@@ -29,6 +29,41 @@ It contains the frozen paired-I/Q data, executable Python source, all ten-seed r
 
 Frozen split sizes are: 6,000 matched training pairs; 1,500 matched `H0` calibration pairs; 1,500 stress `H0` refresh pairs; 3,000 matched test pairs; and 3,000 stress test pairs.
 
+### Download RadioML2016.10b
+
+Download `RML2016.10b.dat` and place it here:
+
+```bash
+<DATASETS_DIR>/raw/RML2016.10b.dat
+```
+
+Note: this repository **does not include** RadioML2016.10b (or any derived `.npy/.npz` files). Please obtain the dataset
+from the official source and follow its license terms. Keep `DATASETS_DIR` outside the git repo to avoid accidentally
+committing data.
+
+Dataset source (Kaggle):
+
+```text
+https://www.kaggle.com/datasets/marwanabudeeb/rml201610b/data
+```
+
+Optional: Kaggle CLI (requires Kaggle credentials). After you have `~/.kaggle/kaggle.json` configured, you can let the
+prep script attempt the download:
+
+```bash
+python3 -m scripts.prepare_radioml2016_10b --try-kaggle
+```
+
+### 3) Prepare VVIMP-style C3FAR-Sense datasets (H1 + generated H0)
+
+```bash
+cd "<CODE_REPO_DIR>"
+python3 -m scripts.prepare_radioml2016_10b --overwrite
+```
+
+Outputs (for lengths `L ∈ {64,128,256}`):
+- `DATASETS_DIR/processed/vvimp_radioml2016_10b_len<L>/` (train/val/test)
+
 ## Environment
 
 Use Python 3.12 and install the pinned packages:
@@ -50,54 +85,3 @@ python code/evaluate_release_dataset.py \
 
 The validator checks all dataset hashes and shapes, recomputes all 53 stored features for a deterministic 128-row subset directly from raw I/Q, and confirms that the paper results cover ten seeds and all three window lengths.
 
-## Regenerate data and experiments
-
-Fast end-to-end installation check:
-
-```bash
-python code/reproduce.py --quick --workspace reproduced_quick
-```
-
-Complete paper-scale run:
-
-```bash
-python code/reproduce.py --workspace reproduced_paper
-```
-
-The complete run regenerates the procedural dataset, frozen-dataset demonstration, ten-seed result matrix, CPU latency table, publication figures, and validation output. Runtime depends on processor speed and BLAS threading.
-
-Individual commands are also available:
-
-```bash
-python code/generate_release_dataset.py --out regenerated_data
-python code/c3far_simulation.py --mode paper --out regenerated_results
-python code/benchmark_latency.py --out regenerated_results/latency.csv
-python code/create_manuscript_figures.py \
-  --results regenerated_results \
-  --latency regenerated_results/latency.csv \
-  --out regenerated_figures
-```
-
-Rebuild the editable manuscript from the supplied tables and figures:
-
-```bash
-python code/build_manuscript.py \
-  --results results \
-  --figures figures \
-  --latency results/latency.csv \
-  --output manuscript/C3FAR-Sense_rebuilt.docx
-```
-
-## Result lineage
-
-- `runs_*.csv`: one row per seed and condition.
-- `summary_*.csv`: mean and two-sided 95% Student-t interval across independent seeds.
-- `paired_comparisons.csv`: paired differences, confidence intervals, paired t-tests, Holm-adjusted p-values, and paired standardized effect sizes.
-- `run_manifest.json`: seeds, sample sizes, SNR grid, receiver environments, and false-alarm targets.
-- `artifacts.json`: feature names, learned-model sizes, thresholds, and pre-aggregation diagnostics.
-
-At `L = 128`, refreshed C3FAR-Sense achieves stress-test `Pf = 0.0979 ± 0.0024` and `Pd = 0.4438 ± 0.0136`, versus `Pd = 0.3555 ± 0.0241` for refreshed global calibration. The paired gain is `0.0884 ± 0.0196` with Holm-adjusted `p = 1.80e-5`. The label-free K-means gate is statistically indistinguishable from the supervised gate in this simulation (`Pd` difference `-0.0006 ± 0.0014`, Holm-adjusted `p = 0.750`). Reference-mismatch and contamination sweeps are reported as boundary tests, including the failure of the exploratory contamination guard to restore nominal false-alarm control.
-
-## Submission checklist
-
-Before journal submission, replace the author, affiliation, corresponding-author, funding, and CRediT placeholders in the manuscript. Deposit the release package in a durable research repository and insert its DOI or permanent URL in the Data availability statement. Hardware or over-the-air validation is still required before making deployment claims.
