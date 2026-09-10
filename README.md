@@ -15,7 +15,6 @@ It contains the frozen paired-I/Q data, executable Python source, all ten-seed r
 
 | Path | Contents |
 | --- | --- |
-| `manuscript/` | Editable DOCX and rendered PDF |
 | `data/` | Raw I/Q archive, 43+10 feature archive, row metadata, manifest, and frozen-dataset demo metrics |
 | `code/` | Generator, detector, evaluation, plotting, validation, latency, and manuscript-building scripts |
 | `results/` | Per-seed tables, 95% confidence-interval summaries, paired tests, manifests, and diagnostic artifacts |
