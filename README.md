@@ -1,6 +1,7 @@
 # C3FAR-Sense reproducibility package
 
-This archive accompanies **“C3FAR-Sense: Context-conditioned conformal false-alarm control for short-window spectrum sensing under receiver mismatch.”** It contains the upgraded Physical Communication manuscript, frozen paired-I/Q data, executable Python source, all ten-seed result tables, and the publication figures.
+This archive accompanies **“C3FAR-Sense: Context-conditioned conformal false-alarm control for short-window spectrum sensing under receiver mismatch.”** 
+It contains the frozen paired-I/Q data, executable Python source, all ten-seed result tables, and dataset preparation for VVIMP-style spectrum sensing using RadioML2016.10b.
 
 ## Scientific status
 
