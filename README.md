@@ -11,16 +11,6 @@ It contains the frozen paired-I/Q data, executable Python source, all ten-seed r
 - Calibration sets contain trusted `H0` windows only. Test labels are never used to choose decision thresholds.
 - The empirical evidence does not establish robustness to arbitrary drift, contaminated references, dependent overlapping windows, or receiver regimes absent from calibration.
 
-## Package contents
-
-| Path | Contents |
-| --- | --- |
-| `data/` | Raw I/Q archive, 43+10 feature archive, row metadata, manifest, and frozen-dataset demo metrics |
-| `code/` | Generator, detector, evaluation, plotting, validation, latency, and manuscript-building scripts |
-| `results/` | Per-seed tables, 95% confidence-interval summaries, paired tests, manifests, and diagnostic artifacts |
-| `figures/` | Ten publication figures used in the manuscript |
-| `validation/` | Final verification report |
-
 ## Dataset schema
 
 `data/c3far_sense_raw_iq_L128_v1.npz` stores `sensing_iq` and `reference_iq` as `float32` arrays with shape `(15000, 128, 2)`, where the last axis is I then Q. It also stores labels, split codes, SNR, environment, modulation, uncertainty, reference mismatch, and stable sample identifiers.
