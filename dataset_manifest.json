@@ -1,0 +1,140 @@
+{
+  "dataset_name": "C3FAR-Sense Paired-IQ Benchmark v1",
+  "version": "1.0.0",
+  "generator_seed": 260908,
+  "window_length": 128,
+  "n_samples": 15000,
+  "splits": {
+    "train_matched": 6000,
+    "calibration_h0_matched": 1500,
+    "refresh_h0_stress": 1500,
+    "test_matched": 3000,
+    "test_stress": 3000
+  },
+  "split_codes": {
+    "0": "train_matched",
+    "1": "calibration_h0_matched",
+    "2": "refresh_h0_stress",
+    "3": "test_matched",
+    "4": "test_stress"
+  },
+  "labels": {
+    "0": "H0 / idle",
+    "1": "H1 / occupied"
+  },
+  "environment_codes": {
+    "0": "white",
+    "1": "colored",
+    "2": "impulsive",
+    "3": "colored-severe",
+    "4": "impulsive-severe",
+    "5": "student-t"
+  },
+  "modulation_codes": {
+    "0": "BPSK",
+    "1": "QPSK",
+    "2": "8PSK",
+    "3": "PAM4",
+    "4": "QAM16",
+    "5": "QAM64",
+    "6": "CPFSK",
+    "7": "GFSK",
+    "8": "AM-DSB",
+    "9": "WBFM"
+  },
+  "raw_schema": {
+    "sensing_iq": [
+      "sample",
+      "time",
+      "I/Q"
+    ],
+    "reference_iq": [
+      "sample",
+      "time",
+      "I/Q"
+    ],
+    "dtype": "float32"
+  },
+  "feature_schema": {
+    "evidence_shape": [
+      15000,
+      43
+    ],
+    "context_shape": [
+      15000,
+      10
+    ],
+    "evidence_feature_names": [
+      "log_energy_ratio",
+      "log_median_ratio",
+      "log_q90_ratio",
+      "spec_entropy_y",
+      "spec_entropy_delta",
+      "spec_flatness_y",
+      "spec_flatness_delta",
+      "log_spec_peak_y",
+      "log_spec_peak_ratio",
+      "kurtosis_y",
+      "kurtosis_delta",
+      "log_crest_y",
+      "log_crest_ratio",
+      "pseudo_cov",
+      "fourth_circular",
+      "phase_concentration_1",
+      "phase_concentration_2",
+      "acf_y_lag1",
+      "acf_delta_lag1",
+      "acf_y_lag2",
+      "acf_delta_lag2",
+      "acf_y_lag4",
+      "acf_delta_lag4",
+      "acf_y_lag8",
+      "acf_delta_lag8",
+      "acf_y_lag16",
+      "acf_delta_lag16",
+      "bandshape_y_0",
+      "log_bandratio_0",
+      "bandshape_y_1",
+      "log_bandratio_1",
+      "bandshape_y_2",
+      "log_bandratio_2",
+      "bandshape_y_3",
+      "log_bandratio_3",
+      "bandshape_y_4",
+      "log_bandratio_4",
+      "bandshape_y_5",
+      "log_bandratio_5",
+      "bandshape_y_6",
+      "log_bandratio_6",
+      "bandshape_y_7",
+      "log_bandratio_7"
+    ],
+    "context_feature_names": [
+      "log_ref_energy",
+      "ref_spec_entropy",
+      "ref_spec_flatness",
+      "log_ref_spec_peak",
+      "ref_kurtosis",
+      "log_ref_crest",
+      "ref_impulse_fraction",
+      "ref_acf_lag1",
+      "ref_acf_lag2",
+      "ref_acf_lag4"
+    ],
+    "note": "The 430 bilinear interactions are generated on demand to avoid redundant storage."
+  },
+  "files": {
+    "c3far_sense_raw_iq_L128_v1.npz": {
+      "bytes": 28718671,
+      "sha256": "542c54b7fc5cd1aedf8157a8d1d51d5fe20702f97b22adb15e522d79e0178a2c"
+    },
+    "c3far_sense_features_L128_v1.npz": {
+      "bytes": 3109538,
+      "sha256": "70b53235a246372204f8dd5b9b5ce666bead3985986a6134a4d8148f445d5577"
+    },
+    "dataset_metadata.csv": {
+      "bytes": 1372199,
+      "sha256": "191973bd5ddd6eb163e02e2c03a9bc49a16b0c9db62178c9f0efa8174a4b53e7"
+    }
+  }
+}

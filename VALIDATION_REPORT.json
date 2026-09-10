@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "validation_date_utc": "2026-09-08",
+  "dataset_files_hash_verified": 3,
+  "dataset_samples": 15000,
+  "raw_iq_window_length": 128,
+  "feature_rows_recomputed_from_raw_iq": 128,
+  "paper_seed_count": 10,
+  "paper_window_lengths": [64, 128, 256],
+  "frozen_evaluation_byte_identical": true,
+  "python_sources_compile": true,
+  "manuscript_builder_executes": true,
+  "docx_container_integrity": "PASS",
+  "rendered_pdf_pages": 22,
+  "page_by_page_visual_inspection": "PASS",
+  "notes": [
+    "All supplied I/Q data are synthetic.",
+    "The frozen L=128 dataset is not a substitute for the complete procedural study.",
+    "Author metadata and a repository DOI remain submission-time placeholders."
+  ]
+}
